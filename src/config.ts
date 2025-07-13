@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 import bunyan from 'bunyan';
-
+import cloudinary from 'cloudinary';
 dotenv.config({});
 
 class Config {
@@ -34,6 +34,13 @@ class Config {
         throw new Error(`Configuration ${key} is undefined.`);
       }
     }
+  }
+  public cloudinaryConfig(): void {
+    cloudinary.v2.config({
+      cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+      api_key: process.env.CLOUDINARY_API_KEY,
+      api_secret: process.env.CLOUDINARY_API_SECRET
+    });
   }
 }
 
